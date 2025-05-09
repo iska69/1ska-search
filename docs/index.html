@@ -334,7 +334,6 @@
         __/\\\\\\\\\\\_\///\\\\\\\\\\\/___\/\\\______\//\\\_\/\\\_______\/\\\__/\\\__\///\\\\\\\\\/____\//\\\\\\\\\\\/___ 
          _\///////////____\///////////_____\///________\///__\///________\///__\///_____\/////////_______\///////////_____
 -->
-  <script src="../scripts/fetch-listings.js"></script>
   <script>
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
@@ -406,7 +405,13 @@
 
     let allListings = [], currentPage = 1, itemsPerPage = 6;
 
-    const LISTINGS_URL ='https://cdn.jsdelivr.net/gh/iska69/1ska-search@main/docs/listings.json';
+    // Use the file that actually got deployed under /docs
+    // If you manually committed docs/listings.json:
+    const LISTINGS_URL = 'listings.json';
+
+    // Or, if you want to pull from your GitHub via jsDelivr (no build script needed):
+    // const LISTINGS_URL = 
+    //   'https://cdn.jsdelivr.net/gh/iska69/1ska-search@main/docs/listings.json';
 
     async function fetchListings() {
       try {
@@ -417,10 +422,10 @@
         renderPage(1);
       } catch (err) {
         console.error('Error loading listings:', err);
-        document.getElementById('loadingScreen').textContent ='Failed to load listings';
+        document.getElementById('loadingScreen').textContent =
+          'Failed to load listings';
       }
     }
-
 
     function renderPage(page) {
       const start = (page - 1) * itemsPerPage;
