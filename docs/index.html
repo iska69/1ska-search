@@ -407,7 +407,7 @@
 
     async function fetchListings() {
       try {
-        const res = await fetch('listings.json');
+        const res = await fetch('../scripts/fetch-listings.js');
         if (!res.ok) throw new Error('Could not load listings.json');
         allListings = await res.json();
         document.getElementById('loadingScreen').style.display = 'none';
