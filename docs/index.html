@@ -405,8 +405,7 @@
 
     let allListings = [], currentPage = 1, itemsPerPage = 6;
 
-    const LISTINGS_URL =
-      'https://cdn.jsdelivr.net/gh/iska69/1ska-search@main/docs/listings.json';
+    const LISTINGS_URL ='https://cdn.jsdelivr.net/gh/iska69/1ska-search@main/docs/listings.json';
 
     async function fetchListings() {
       try {
@@ -417,8 +416,7 @@
         renderPage(1);
       } catch (err) {
         console.error('Error loading listings:', err);
-        document.getElementById('loadingScreen').textContent =
-          'Failed to load listings';
+        document.getElementById('loadingScreen').textContent ='Failed to load listings';
       }
     }
 
