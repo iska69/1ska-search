@@ -405,18 +405,23 @@
 
     let allListings = [], currentPage = 1, itemsPerPage = 6;
 
+    const LISTINGS_URL =
+      'https://cdn.jsdelivr.net/gh/iska69/1ska-search@main/docs/listings.json';
+
     async function fetchListings() {
       try {
-        const res = await fetch('listings.json');
-        if (!res.ok) throw new Error('Could not load listings.json');
+        const res = await fetch(LISTINGS_URL);
+        if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
         allListings = await res.json();
         document.getElementById('loadingScreen').style.display = 'none';
         renderPage(1);
       } catch (err) {
-        console.error(err);
-        document.getElementById('loadingScreen').textContent = 'Failed to load listings';
+        console.error('Error loading listings:', err);
+        document.getElementById('loadingScreen').textContent =
+          'Failed to load listings';
       }
     }
+
 
     function renderPage(page) {
       const start = (page - 1) * itemsPerPage;
